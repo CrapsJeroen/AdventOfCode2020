@@ -1,4 +1,4 @@
-def find_pair(target, arr):
+def find_pair(target: int, arr: list) -> tuple:
     s = set()
     for num in arr:
         if (target - num) in s:

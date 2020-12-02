@@ -1,11 +1,11 @@
 import re
 
 
-def process_one(a, b, char, string):
+def process_one(a: str, b: str, char: str, string: str) -> bool:
     return (int(a) <= string.count(char) <= int(b))
 
 
-def process_two(a, b, char, string):
+def process_two(a: str, b: str, char: str, string: str) -> bool:
     return (string[int(a) - 1] == char) ^ (string[int(b) - 1] == char)
 
 
