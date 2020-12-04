@@ -2,7 +2,7 @@ import re
 
 
 def required_fields(passport: dict, fields: dict) -> bool:
-    return all(fl in passport for fl in fields) or (sum(fl in passport for fl in fields) == 7 and 'cid' not in passport)
+    return all(fl in passport for fl in fields)
 
 
 def check_height(v: str) -> bool:
@@ -15,7 +15,7 @@ def check_height(v: str) -> bool:
 
 def validation(passport: dict, checks: dict) -> bool:
     if required_fields(passport, checks):
-        return all(checks[k](v) for k, v in passport.items())
+        return all(checks[k](v) for k, v in passport.items() if k in checks)
     return False
 
 
@@ -37,8 +37,7 @@ with open("./input") as f:
         'hgt': check_height,
         'hcl': lambda v: bool(re.match("^#(?:[0-9a-fA-F]{3}){1,2}$", v)),
         'pid': lambda v: bool(re.match("^[0-9]{9}$", v)),
-        'ecl': lambda v: bool(re.match('^amb|blu|brn|gry|grn|hzl|oth', v)),
-        'cid': lambda v: True
+        'ecl': lambda v: bool(re.match('^amb|blu|brn|gry|grn|hzl|oth', v))
     }
 
     print(f"""Problem 1: Valid passports = {sum(map(lambda x: required_fields(x, checks), ps))}""")
