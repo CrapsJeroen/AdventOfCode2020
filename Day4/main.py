@@ -37,7 +37,7 @@ with open("./input") as f:
         'hgt': check_height,
         'hcl': lambda v: bool(re.match("^#(?:[0-9a-fA-F]{3}){1,2}$", v)),
         'pid': lambda v: bool(re.match("^[0-9]{9}$", v)),
-        'ecl': lambda v: v in ('amb', 'blu', 'brn', 'gry', 'grn', 'hzl', 'oth'),
+        'ecl': lambda v: bool(re.match('^amb|blu|brn|gry|grn|hzl|oth', v)),
         'cid': lambda v: True
     }
 
