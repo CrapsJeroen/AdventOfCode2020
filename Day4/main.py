@@ -26,8 +26,8 @@ with open("./input") as f:
             ps.append(p)
             p = {}
         else:
-            fields = l.rstrip().split(" ")
-            p.update({field[:3]: field[4:] for field in fields})
+            fields = (t.split(":") for t in l.rstrip().split(" "))
+            p.update({k: v for k, v in fields})
     ps.append(p)
 
     checks = {
